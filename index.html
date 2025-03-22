@@ -17,15 +17,35 @@
 
     <div class='table-container' id='table-container'>
     </div>
+
     <dialog id='book-dialog'>
       <div class='dialog-content'>
         <h2>New Book Form</h2>
+        <form action=''>
+          <div class='book-title'>
+            <label for='book-title' class='book-title'>Title</label>
+            <input type='text' class='book-title' name='book-title'>
+          </div>
+          <div class='book-author'>
+            <label for='book-author' class='book-author'>Author</label>
+            <input type='text' class='book-author' name='book-author'>
+          </div>
+          <div class='book-pages'>
+            <label for='book-pages' class='book-pages'>Pages</label>
+            <input type='tel' class='book-pages' name='book-pages'>
+          </div>
+          <div class='book-read-status'>
+            <label for='book-read-status' class='book-read-status'>Read</label>
+            <input type='checkbox' class='book-read-status' name='book-read-status'>
+          </div>
+        </form>
         <div class='dialog-buttons'>
           <button class='modal-submit'>Submit</button>
           <button class='modal-cancel'>Cancel</button>
         </div>
       </div>
     </dialog>
+
   </div>
 </body>
 

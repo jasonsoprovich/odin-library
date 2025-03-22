@@ -98,6 +98,7 @@ function displayLibrary() {
 
   if (modalSubmit && modalCancel) {
     modalSubmit.addEventListener('click', () => {
+      event.preventDefault();
       createBook();
       dialog.close();
     });
