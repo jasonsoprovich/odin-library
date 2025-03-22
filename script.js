@@ -18,22 +18,25 @@ function addBookToLibrary(book) {
 
 function createBook() {
   const id = crypto.randomUUID();
-  const title = prompt('Enter Book Title');
-  const author = prompt('Enter Book Author');
-  const pages = prompt('Enter Book Pages');
-  const readStatus = prompt('Read (yes/no)');
+  // const title = prompt('Enter Book Title');
+  // const author = prompt('Enter Book Author');
+  // const pages = prompt('Enter Book Pages');
+  // const readStatus = prompt('Read (yes/no)');
   const newBook = new Book(id, title, author, pages, readStatus);
   addBookToLibrary(newBook);
 }
 
-const addBookButton = document.getElementById('add-book-button');
+function initializeLibrary() {
+  const book1 = new Book(crypto.randomUUID(), 'The Hobbit', 'J.R.R. Tolkien', '295', 'yes');
+  const book2 = new Book(crypto.randomUUID(), 'The Fellowship of the Ring', 'J.R.R. Tolkien', '423', 'yes');
+  const book3 = new Book(crypto.randomUUID(), 'The Two Towers', 'J.R.R. Tolkien', '352', 'no');
+  const book4 = new Book(crypto.randomUUID(), 'The Return of the King', 'J.R.R. Tolkien', '416', 'no');
+
+  myLibrary.push(book1, book2, book3, book4)
+}
+
 const tableContainer = document.getElementById('table-container');
 
-addBookButton.addEventListener('click', () => {
-  createBook();
-});
-
-// Initialize
 setupTable();
 initializeLibrary();
 displayLibrary();
@@ -81,14 +84,30 @@ function displayLibrary() {
 
     bookTable.appendChild(row);
   });
+
+  const addRow = document.createElement('tr');
+  const addCell = document.createElement('td');
+  addCell.colSpan = 4;
+  addCell.innerHTML = '<button id="add-new-book">Add New Book</button>';
+  addRow.appendChild(addCell);
+  bookTable.appendChild(addRow);
+
+  const dialog = document.querySelector('dialog');
+  const modalSubmit = dialog.querySelector('.modal-submit');
+  const modalCancel = dialog.querySelector('.modal-cancel');
+
+  if (modalSubmit && modalCancel) {
+    modalSubmit.addEventListener('click', () => {
+      createBook();
+      dialog.close();
+    });
+    modalCancel.addEventListener('click', () => {
+      dialog.close();
+    });
+  }
+
+  const newBookButton = document.getElementById('add-new-book');
+    newBookButton.addEventListener('click', () => {
+      dialog.showModal();
+    });
 }
-
-function initializeLibrary() {
-  const book1 = new Book(crypto.randomUUID(), 'The Hobbit', 'J.R.R. Tolkien', '295', 'yes');
-  const book2 = new Book(crypto.randomUUID(), 'The Fellowship of the Ring', 'J.R.R. Tolkien', '423', 'yes');
-  const book3 = new Book(crypto.randomUUID(), 'The Two Towers', 'J.R.R. Tolkien', '352', 'no');
-  const book4 = new Book(crypto.randomUUID(), 'The Return of the King', 'J.R.R. Tolkien', '416', 'no');
-
-  myLibrary.push(book1, book2, book3, book4)
-}
-

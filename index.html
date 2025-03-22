@@ -7,7 +7,6 @@
   <title>Library</title>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
-  <!-- <script type="module" src="script.js"></script> -->
 </head>
 
 <body>
@@ -16,12 +15,17 @@
       <h1>Book Collection</h1>
     </header>
 
-    <div id='button-container'>
-      <button id='add-book-button'>Add Book</button>
-    </div>
     <div class='table-container' id='table-container'>
-
     </div>
+    <dialog id='book-dialog'>
+      <div class='dialog-content'>
+        <h2>New Book Form</h2>
+        <div class='dialog-buttons'>
+          <button class='modal-submit'>Submit</button>
+          <button class='modal-cancel'>Cancel</button>
+        </div>
+      </div>
+    </dialog>
   </div>
 </body>
 
