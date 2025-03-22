@@ -16,12 +16,8 @@ function addBookToLibrary(book) {
   displayLibrary();
 }
 
-function createBook() {
+function createBook(title, author, pages, readStatus) {
   const id = crypto.randomUUID();
-  // const title = prompt('Enter Book Title');
-  // const author = prompt('Enter Book Author');
-  // const pages = prompt('Enter Book Pages');
-  // const readStatus = prompt('Read (yes/no)');
   const newBook = new Book(id, title, author, pages, readStatus);
   addBookToLibrary(newBook);
 }
@@ -32,24 +28,19 @@ function initializeLibrary() {
   const book3 = new Book(crypto.randomUUID(), 'The Two Towers', 'J.R.R. Tolkien', '352', 'no');
   const book4 = new Book(crypto.randomUUID(), 'The Return of the King', 'J.R.R. Tolkien', '416', 'no');
 
-  myLibrary.push(book1, book2, book3, book4)
+  myLibrary.push(book1, book2, book3, book4);
 }
 
-const tableContainer = document.getElementById('table-container');
-
-setupTable();
-initializeLibrary();
-displayLibrary();
-
 function setupTable() {
+  const tableContainer = document.getElementById('table-container');
   tableContainer.innerHTML = '';
-
+  
   const bookTable = document.createElement('table');
   bookTable.id = 'book-table';
-
+  
   const headers = ['Title', 'Author', 'Pages', 'Read Status'];
   const headerRow = document.createElement('tr');
-
+  
   headers.forEach(headerText => {
     const headerCell = document.createElement('th');
     headerCell.textContent = headerText;
@@ -64,51 +55,67 @@ function displayLibrary() {
   while (bookTable.rows.length > 1) {
     bookTable.deleteRow(1);
   }
-
+  
   myLibrary.forEach(book => {
     const row = document.createElement('tr');
     const titleCell = document.createElement('td');
     const authorCell = document.createElement('td');
     const pagesCell = document.createElement('td');
     const readStatusCell = document.createElement('td');
-
+    
     titleCell.textContent = book.title;
     authorCell.textContent = book.author;
     pagesCell.textContent = book.pages;
     readStatusCell.textContent = book.readStatus;
-
+    
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(pagesCell);
     row.appendChild(readStatusCell);
-
+    
     bookTable.appendChild(row);
   });
-
+  
   const addRow = document.createElement('tr');
   const addCell = document.createElement('td');
   addCell.colSpan = 4;
   addCell.innerHTML = '<button id="add-new-book">Add New Book</button>';
   addRow.appendChild(addCell);
   bookTable.appendChild(addRow);
-
+  
   const dialog = document.querySelector('dialog');
-  const modalSubmit = dialog.querySelector('.modal-submit');
-  const modalCancel = dialog.querySelector('.modal-cancel');
-
-  if (modalSubmit && modalCancel) {
-    modalSubmit.addEventListener('click', () => {
-      event.preventDefault();
-      createBook();
-      dialog.close();
-    });
-    modalCancel.addEventListener('click', () => {
-      dialog.close();
-    });
-  }
-
   const newBookButton = document.getElementById('add-new-book');
-    newBookButton.addEventListener('click', () => {
-      dialog.showModal();
-    });
+  newBookButton.addEventListener('click', () => {
+    dialog.showModal();
+  });  
 }
+
+function initializeModal() {
+  const dialog = document.querySelector('dialog');
+  const bookForm = document.getElementById('book-form');
+  const modalCancel = dialog.querySelector('.modal-cancel');
+  
+  if (bookForm) {
+    bookForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const pages = document.getElementById('pages').value;
+      const readStatus = document.getElementById('read-status').value;
+      
+      createBook(title, author, pages, readStatus);
+      bookForm.reset();
+      dialog.close();
+    })
+    
+    modalCancel.addEventListener('click', () => {
+      bookForm.reset();
+      dialog.close();
+    });
+  } 
+}
+
+setupTable();
+initializeLibrary();
+displayLibrary();
+initializeModal();
