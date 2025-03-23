@@ -138,10 +138,8 @@ dialog {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: var(--table-bg-color);
   font-family: var(--font-family);
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -75%);
+  position: relative;
+  margin: auto;
 }
 
 dialog h2 {
@@ -181,13 +179,6 @@ dialog::backdrop {
   font-size: 1rem;
 }
 
-.dialog-buttons {
-  display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
 #add-new-book {
   padding: 0.5rem 1rem;
   border: none;
@@ -196,6 +187,13 @@ dialog::backdrop {
   font-size: 1rem;
   background-color: var(--primary-color);
   color: white;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .dialog-buttons button {
