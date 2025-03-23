@@ -129,17 +129,6 @@ tr:nth-child(even) {
   background-color: var(--table-row-alt-color);
 }
 
-/* #add-book-button {
-  margin-bottom: 1.5rem;
-  background-color: var(--primary-color);
-  padding: 0.5rem 1rem;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  color: white;
-} */
-
-/* Modal dialog styling */
 dialog {
   border: none;
   border-radius: 5px;
@@ -152,7 +141,7 @@ dialog {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, -75%);
 }
 
 dialog h2 {
