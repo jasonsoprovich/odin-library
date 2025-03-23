@@ -63,23 +63,52 @@ function createBookRow(book) {
   
   const readStatusContainer = document.createElement('div');
   readStatusContainer.classList.add('read-status-container');
+
+  const toggleContainer = document.createElement('div');
+  toggleContainer.classList.add('toggle-container');
+
+  const toggleLabel = document.createElement('label');
+  toggleLabel.classList.add('switch');
+
+  const toggleInput = document.createElement('input');
+  toggleInput.type = 'checkbox';
+  toggleInput.checked = book.readStatus === 'yes';
+
+  const slider = document.createElement('span');
+  slider.classList.add('slider', 'round');
+
+  const statusText = document.createElement('span');
+  statusText.classList.add('status-text');
+  statusText.textContent = book.readStatus === 'yes' ? 'Read' : 'Unread';
+
+  toggleLabel.appendChild(toggleInput);
+  toggleLabel.appendChild(slider);
+  toggleContainer.appendChild(toggleLabel);
+  toggleContainer.appendChild(statusText);
+
+  toggleInput.addEventListener('change', () => {
+    book.readStatus = toggleInput.checked ? 'yes' : 'no';
+
+    statusText.textContent = book.readStatus === 'yes' ? 'Read' : 'Unread';
+  })
   
-  const readStatusText = document.createElement('span');
-  readStatusText.textContent = book.readStatus;
-  readStatusContainer.appendChild(readStatusText);
+  // const readStatusText = document.createElement('span');
+  // readStatusText.textContent = book.readStatus;
+  // readStatusContainer.appendChild(readStatusText);
   
   const deleteButton = document.createElement('span');
   deleteButton.classList.add('delete-button');
   deleteButton.innerHTML = '✖';
-  readStatusContainer.appendChild(deleteButton);
-  
-  readStatusCell.appendChild(readStatusContainer);
-  
+
   deleteButton.addEventListener('click', (event) => {
     event.stopPropagation();
     deleteBook(book);
   });
   
+  readStatusContainer.appendChild(toggleContainer);
+  readStatusContainer.appendChild(deleteButton);
+  readStatusCell.appendChild(readStatusContainer);
+    
   row.appendChild(titleCell);
   row.appendChild(authorCell);
   row.appendChild(pagesCell);
