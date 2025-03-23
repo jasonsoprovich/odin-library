@@ -83,10 +83,15 @@ function displayLibrary() {
     
     deleteButton.addEventListener('click', (event) => {
       event.stopPropagation();
-      const index = myLibrary.findIndex(b => b.id === book.id);
-      if(index !== -1) {
-        myLibrary.splice(index, 1);
-        displayLibrary();
+
+      const confirmDelete = confirm(`Are you sure you want to delete '${book.title}'?`);
+
+      if (confirmDelete){
+        const index = myLibrary.findIndex(b => b.id === book.id);
+        if(index !== -1) {
+          myLibrary.splice(index, 1);
+          displayLibrary();
+        }
       }
     });
 
