@@ -62,7 +62,7 @@ h6 {
   --secondary-color: #2ecc71;
   --primary-bg-color: #f7f9fc;
   --table-bg-color: #fff;
-  --font-family: 'Helvetica, sans-serif';
+  --font-family: Helvetica, sans-serif;
   --padding: 20px;
   --max-width: 90%;
   --table-header-color: #f2f2f2;
@@ -74,7 +74,7 @@ h6 {
 body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family);
   background-color: var(--primary-bg-color);
   color: var(--text-color);
 }
