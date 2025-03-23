@@ -66,8 +66,30 @@ function displayLibrary() {
     titleCell.textContent = book.title;
     authorCell.textContent = book.author;
     pagesCell.textContent = book.pages;
-    readStatusCell.textContent = book.readStatus;
+
+    const readStatusContainer = document.createElement('div');
+    readStatusContainer.classList.add('read-status-container');
+
+    const readStatusText = document.createElement('span');
+    readStatusText.textContent = book.readStatus;
+    readStatusContainer.appendChild(readStatusText);
     
+    const deleteButton = document.createElement('span');
+    deleteButton.classList.add('delete-button');
+    deleteButton.innerHTML = '✖';
+    readStatusContainer.appendChild(deleteButton);
+
+    readStatusCell.appendChild(readStatusContainer);
+    
+    deleteButton.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const index = myLibrary.findIndex(b => b.id === book.id);
+      if(index !== -1) {
+        myLibrary.splice(index, 1);
+        displayLibrary();
+      }
+    });
+
     row.appendChild(titleCell);
     row.appendChild(authorCell);
     row.appendChild(pagesCell);
