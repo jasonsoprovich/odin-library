@@ -64,12 +64,14 @@ h6 {
   --primary-bg-color: #f7f9fc;
   --table-bg-color: #fff;
   --font-family: Helvetica, sans-serif;
-  --padding: 20px;
-  --max-width: 90%;
   --table-header-color: #f2f2f2;
   --table-border-color: #ddd;
   --table-row-alt-color: #f9f9f9;
   --text-color: #333;
+  --invalidRed: #D55C5F;
+  --validGreen: #01A401;
+  --padding: 20px;
+  --max-width: 90%;
 }
 
 body {
@@ -306,4 +308,73 @@ input:checked+.slider:before {
   font-size: 0.9rem;
   width: 50px;
   display: inline-block;
+}
+
+/* validation styling */
+.input-container {
+  position: relative;
+  width: 100%;
+}
+
+.validation-icon {
+  position: absolute;
+  top: 35px;
+  bottom: 0;
+  right: 15px;
+  margin: auto 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+input:not(:placeholder-shown):valid+.validation-icon::before {
+  content: '\2714';
+  color: var(--validGreen);
+  display: inline-block;
+}
+
+input:not(:placeholder-shown):invalid+.validation-icon::before {
+  content: '\2716';
+  color: var(--invalidRed);
+  display: inline-block;
+}
+
+input.touched:valid+.validation-icon::before {
+  content: '\2714';
+  color: var(--validGreen);
+  display: inline-block;
+}
+
+input.touched:invalid+.validation-icon::before {
+  content: '\2716';
+  color: var(--invalidRed);
+  display: inline-block;
+}
+
+#book-form input:focus,
+#book-form input:focus:valid,
+#book-form input:focus:invalid {
+  border: 2px solid var(--primary-color);
+  outline: none;
+}
+
+#book-form label[for='title']::after,
+#book-form label[for='author']::after,
+#book-form label[for='pages']::after {
+  content: ' (required)';
+  color: var(--invalidRed);
+  font-size: 0.8rem;
+  font-weight: normal;
+  margin-left: 4px;
+}
+
+/* disable number input incremental buttons */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

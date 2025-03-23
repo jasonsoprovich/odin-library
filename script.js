@@ -185,7 +185,17 @@ function initializeModal() {
   } 
 }
 
+function trackTouchedInputs() {
+  const inputs = document.querySelectorAll('#book-form input');
+  inputs.forEach(input => {
+    input.addEventListener('blur', function () {
+      this.classList.add('touched');
+    });
+  });
+}
+
 setupTable();
 initializeLibrary();
 displayLibrary();
 initializeModal();
+trackTouchedInputs();
