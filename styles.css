@@ -118,6 +118,7 @@ td {
   padding: 12px 15px;
   border: 1px solid var(--table-border-color);
   text-align: left;
+  white-space: nowrap;
 }
 
 th {
@@ -223,6 +224,7 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  min-width: 120px;
 }
 
 .delete-button {
@@ -297,8 +299,11 @@ input:checked+.slider:before {
 .toggle-container {
   display: flex;
   align-items: center;
+  min-width: 90px;
 }
 
 .status-text {
   font-size: 0.9rem;
+  width: 50px;
+  display: inline-block;
 }
