@@ -92,10 +92,6 @@ function createBookRow(book) {
     statusText.textContent = book.readStatus === 'yes' ? 'Read' : 'Unread';
   })
   
-  // const readStatusText = document.createElement('span');
-  // readStatusText.textContent = book.readStatus;
-  // readStatusContainer.appendChild(readStatusText);
-  
   const deleteButton = document.createElement('span');
   deleteButton.classList.add('delete-button');
   deleteButton.innerHTML = '✖';
