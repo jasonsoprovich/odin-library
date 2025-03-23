@@ -60,6 +60,7 @@ h6 {
 :root {
   --primary-color: #3498db;
   --secondary-color: #2ecc71;
+  --darkgrey-color: #ccc;
   --primary-bg-color: #f7f9fc;
   --table-bg-color: #fff;
   --font-family: Helvetica, sans-serif;
@@ -128,7 +129,7 @@ tr:nth-child(even) {
   background-color: var(--table-row-alt-color);
 }
 
-#add-book-button {
+/* #add-book-button {
   margin-bottom: 1.5rem;
   background-color: var(--primary-color);
   padding: 0.5rem 1rem;
@@ -136,7 +137,7 @@ tr:nth-child(even) {
   border: none;
   border-radius: 15px;
   color: white;
-}
+} */
 
 /* Modal dialog styling */
 dialog {
@@ -198,6 +199,16 @@ dialog::backdrop {
   margin-top: 1rem;
 }
 
+#add-new-book {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  background-color: var(--primary-color);
+  color: white;
+}
+
 .dialog-buttons button {
   padding: 0.5rem 1rem;
   border: none;
@@ -207,11 +218,15 @@ dialog::backdrop {
 }
 
 .modal-cancel {
-  background-color: #ccc;
+  background-color: var(--darkgrey-color);
   color: #333;
 }
 
 .modal-submit {
   background-color: var(--primary-color);
   color: white;
+}
+
+button:hover {
+  filter: brightness(1.1);
 }
