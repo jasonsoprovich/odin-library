@@ -194,6 +194,20 @@ dialog::backdrop {
   color: white;
 }
 
+#add-new-book:hover {
+  filter: brightness(1.1);
+}
+
+.modal-cancel {
+  background-color: var(--darkgrey-color);
+  color: #333;
+}
+
+.modal-submit {
+  background-color: var(--primary-color);
+  color: white;
+}
+
 .dialog-buttons {
   display: flex;
   justify-content: flex-end;
@@ -219,16 +233,12 @@ dialog::backdrop {
   color: white;
 }
 
-button:hover {
-  filter: brightness(1.1);
+button {
+  transition: filter 0.3s ease;
 }
 
-.read-status-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  min-width: 120px;
+button:hover {
+  filter: brightness(1.1);
 }
 
 .delete-button {
@@ -239,9 +249,10 @@ button:hover {
   cursor: pointer;
   color: var(--darkgrey-color);
   font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
-tr:hover .delete-button {
+.delete-button:hover {
   display: inline;
   color: red;
 }
