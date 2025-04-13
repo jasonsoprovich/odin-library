@@ -22,21 +22,24 @@
       <div class='dialog-content'>
         <h2>Add New Book</h2>
         <form id='book-form'>
-          <div>
+          <div class='input-container'>
             <label for='title'>Title:</label>
-            <input type='text' id='title' name='title' required>
+            <input type='text' id='title' name='title' placeholder=' ' required>
+            <span class='validation-icon'></span>
           </div>
-          <div>
-            <label for='book-author'>Author:</label>
-            <input type='text' id='author' name='author' required>
+          <div class='input-container'>
+            <label for='author'>Author:</label>
+            <input type='text' id='author' name='author' placeholder=' ' required>
+            <span class='validation-icon'></span>
           </div>
-          <div>
+          <div class='input-container'>
             <label for='pages'>Pages:</label>
-            <input type='tel' id='pages' name='pages' required>
+            <input type='number' id='pages' name='pages' min='1' max='99999' placeholder=' ' required>
+            <span class='validation-icon'></span>
           </div>
-          <div>
+          <div class='input-container'>
             <label for='read-status'>Read Status:</label>
-            <select id='read-status' name='read-status'>
+            <select id='read-status' name='read-status' required>
               <option value='yes'>Yes</option>
               <option value='no'>No</option>
             </select>
