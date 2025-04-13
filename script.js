@@ -1,19 +1,47 @@
 const myLibrary = [];
 
-function Book(id, title, author, pages, readStatus) {
-  if (!new.target) {
-    throw Error("You must use the 'new' operator to call the constructor.");
+class Book {
+  constructor(id, title, author, pages, readStatus) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
   }
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-}
 
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-  displayLibrary();
+  addBookToLibrary(book) {
+    myLibrary.push(book);
+    displayLibrary();
+  }
+  
+  deleteBook(book) {
+    const confirmDelete = confirm(`Are you sure you want to delete '${book.title}'?`);
+
+    if (confirmDelete) {
+      const index = myLibrary.findIndex(b => b.id === book.id);
+      if (index !== -1) {
+        myLibrary.splice(index, 1);
+        displayLibrary();
+      }
+    }
+  }
+  displayLibrary() {
+    const bookTable = document.getElementById('book-table');
+
+    while (bookTable.rows.length > 1) {
+      bookTable.deleteRow(1);
+    }
+
+    myLibrary.forEach(book => {
+      const row = createBookRow(book);
+      bookTable.appendChild(row);
+    });
+
+    const addRow = createAddBookRow();
+    bookTable.appendChild(addRow);
+
+    setupAddBookButton();
+  }
 }
 
 function createBook(title, author, pages, readStatus) {
@@ -122,17 +150,7 @@ function createAddBookRow() {
   return addRow;
 }
 
-function deleteBook(book) {
-  const confirmDelete = confirm(`Are you sure you want to delete '${book.title}'?`);
-  
-  if (confirmDelete) {
-    const index = myLibrary.findIndex(b => b.id === book.id);
-    if (index !== -1) {
-      myLibrary.splice(index, 1);
-      displayLibrary();
-    }
-  }
-}
+
 
 function setupAddBookButton() {
   const dialog = document.querySelector('dialog');
@@ -142,23 +160,7 @@ function setupAddBookButton() {
   });
 }
 
-function displayLibrary() {
-  const bookTable = document.getElementById('book-table');
-  
-  while (bookTable.rows.length > 1) {
-    bookTable.deleteRow(1);
-  }
-  
-  myLibrary.forEach(book => {
-    const row = createBookRow(book);
-    bookTable.appendChild(row);
-  });
-  
-  const addRow = createAddBookRow();
-  bookTable.appendChild(addRow);
-  
-  setupAddBookButton();
-}
+
 
 function initializeModal() {
   const dialog = document.querySelector('dialog');
