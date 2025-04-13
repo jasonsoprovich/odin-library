@@ -144,25 +144,8 @@ class Library {
   }
 }
 
-<<<<<<< HEAD
 const library = new Library();
 library.setupTable();
 library.initializeLibrary();
 library.updateLibrary();
 library.initializeModal();
-=======
-function trackTouchedInputs() {
-  const inputs = document.querySelectorAll('#book-form input');
-  inputs.forEach(input => {
-    input.addEventListener('blur', function () {
-      this.classList.add('touched');
-    });
-  });
-}
-
-setupTable();
-initializeLibrary();
-displayLibrary();
-initializeModal();
-trackTouchedInputs();
->>>>>>> e908cf20a9e5867a7a185a95818d3dbe48da19ab
