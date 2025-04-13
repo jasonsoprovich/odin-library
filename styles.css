@@ -121,6 +121,10 @@ td {
   white-space: nowrap;
 }
 
+td {
+  position: relative;
+}
+
 th {
   background-color: var(--table-header-color);
   font-weight: bold;
@@ -228,10 +232,13 @@ button:hover {
 }
 
 .delete-button {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
   color: var(--darkgrey-color);
   font-size: 1rem;
-  margin-left: 1rem;
 }
 
 tr:hover .delete-button {

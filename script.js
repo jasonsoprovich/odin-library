@@ -32,7 +32,7 @@ class Library {
   removeBook(book) {
     const confirmDelete = confirm(`Are you sure you want to delete '${book.title}'?`);
     if (confirmDelete) {
-      this.books = this.books.filter(book => book.id !== bookID);
+      this.books = this.books.filter(b => b.id !== book.id);
       this.updateLibrary();
     }
   }
@@ -69,8 +69,8 @@ class Library {
           <span class='slider round'></span>
         </label>
         <span class='status-text'>${book.readStatus === 'yes' ? 'Read' : 'Unread'}</span>
+        <span class='delete-button'>✖</span>
       </td>
-      <td><span class='delete-button'>✖</span>
     `;
     
     const toggleInput = row.querySelector(`input[type='checkbox']`);
@@ -81,7 +81,8 @@ class Library {
     });
 
     const deleteButton = row.querySelector(`.delete-button`);
-    deleteButton.addEventListener('click', () => this.deleteBook(book.id));
+    deleteButton.addEventListener('click', () => this.removeBook(book));
+
     return row;
   }
   
